@@ -1,17 +1,20 @@
 # Simple Todo App
 
-Give a brief description of the project here. Feel free to give it a different name.
+A simple todo list app that helps the user keep up with tasks. 
 
 ## Functionality
 
-Give a more detailed explanation of the project and its functionality.
+The user can fill out a form to add a tasks thats needed to be done. The pages will display all the tasks on the todo list including their due dates(if any). 
 
 ## Technology
 
-Give a description of the technologies and techniques used. Pictures, GIFs, or screenshots that detail the project features are recommended.
+Languages used: HTML, CSS, and Javascript.
+Techniques used: Object Oriented Programming, DOM.
+<img width="1400" height="1050" alt="Screenshot (157)" src="https://github.com/user-attachments/assets/97d8fa3a-4a85-49cf-af3c-6e8c42023bf5" />
+<img width="1400" height="1050" alt="Screenshot (158)" src="https://github.com/user-attachments/assets/515a1e4b-430c-489a-9fa5-cb9eae9b72b8" />
 
 ## Deployment
 
 This project is deployed on GitHub Pages:
 
-- ADD LINK HERE
+- (https://zsg0016.github.io/se_project_todo-app/)

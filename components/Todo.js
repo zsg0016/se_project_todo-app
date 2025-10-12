@@ -1,25 +1,24 @@
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 export default class Todo {
-  constructor(data, selector) {
-    this._id = data.id === undefined ? uuidv4() : data.id;
+  constructor(data, templateSelector, todoID) {
     this._name = data.name;
+    this._id = todoID;
     this._completed = data.completed === undefined ? false : data.completed;
     this._date = data.date;
-    this._selector = selector;
+    this._templateSelector = templateSelector;
   }
 
   getView() {
     const todoElement = document
-      .querySelector(`#${this._selector}`)
+      .querySelector(`#${this._templateSelector}`)
       .content.querySelector(".todo")
       .cloneNode(true);
     const todoNameEl = todoElement.querySelector(".todo__name");
     const todoLabel = todoElement.querySelector(".todo__label");
-    const todoCheckboxEl = todoElement.querySelector(".todo__completed");
+    this._todoCheckboxEl = todoElement.querySelector(".todo__completed");
 
     todoNameEl.textContent = this._name;
-    todoCheckboxEl.checked = this._completed;
-    todoCheckboxEl.id = `todo-${this._id}`;
+    this._todoCheckboxEl.checked = this._completed;
+    this._todoCheckboxEl.id = `todo-${this._id}`;
     todoLabel.setAttribute("for", `todo-${this._id}`);
     this.#setDueDate(todoElement);
     this.#setEventListeners(todoElement);
@@ -29,7 +28,9 @@ export default class Todo {
 
   #setEventListeners(todoElement) {
     const todoDeleteBtn = todoElement.querySelector(".todo__delete-btn");
-
+    this._todoCheckboxEl.addEventListener("change", () => {
+      this._completed = !this._completed;
+    });
     todoDeleteBtn.addEventListener("click", () => {
       todoElement.remove();
     });

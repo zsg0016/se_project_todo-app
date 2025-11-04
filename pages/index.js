@@ -15,9 +15,11 @@ const handleTodoChecked = (checked) => {
   todoCounter.updateCompleted(checked);
 };
 
-const handleTodoDelete = () => {
+const handleTodoDelete = (completed) => {
   todoCounter.updateTotal(false);
-  todoCounter.updateCompleted(false);
+  if (completed) {
+    todoCounter.updateCompleted(!completed);
+  }
 };
 
 const renderTodo = (item) => {
@@ -28,13 +30,12 @@ const renderTodo = (item) => {
     handleTodoDelete,
     handleTodoChecked
   );
-  todoCounter.updateTotal(true);
   todosList.addItem(todo.getView());
 };
 
 const handleFormSubmit = (inputValues) => {
-  const todoName = inputValues.todoName;
-  const dateInput = inputValues.todoDate !== null ? inputValues.todoDate : "";
+  const todoName = inputValues["name"];
+  const dateInput = inputValues["date"] !== null ? inputValues["date"] : "";
 
   // Create a date object and adjust for timezone
   const date = new Date(dateInput);
@@ -62,6 +63,7 @@ const todosList = new Section({
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 todosList.renderItems();
 const addTodoPopup = new PopupWithForm("#add-todo-popup", handleFormSubmit);
+addTodoPopup.setEventListeners();
 addTodoButton.addEventListener("click", () => {
   addTodoPopup.open();
 });

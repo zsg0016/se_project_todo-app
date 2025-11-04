@@ -4,13 +4,16 @@ class TodoCounter {
   constructor(todos, selector) {
     this._todoCounterTextElement = document.querySelector(selector);
     this._completedTodos = 0;
-    this._totalTodos = 0;
+    this._totalTodos = todos.length;
+    console.log(this._totalTodos);
     todos.forEach((todoElement) => {
       if (todoElement.completed) {
         this._completedTodos += 1;
       }
     });
+    console.log(this._totalTodos);
     this._updateText();
+    console.log(this._totalTodos);
   }
 
   // Call this when a checkbox is clicked, and when a completed

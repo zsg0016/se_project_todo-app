@@ -41,7 +41,7 @@ export default class Todo {
       this.handleTodoChecked(this._completed);
     });
     todoDeleteBtn.addEventListener("click", () => {
-      this.handleTodoDelete();
+      this.handleTodoDelete(this._completed);
       todoElement.remove();
     });
   }
